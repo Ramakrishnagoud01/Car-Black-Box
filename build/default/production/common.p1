@@ -1,0 +1,219 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"31 ./clcd.h
+[v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
+"54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc/pic16f877a.h
+[; <" INDF equ 00h ;# ">
+"61
+[; <" TMR0 equ 01h ;# ">
+"68
+[; <" PCL equ 02h ;# ">
+"75
+[; <" STATUS equ 03h ;# ">
+"161
+[; <" FSR equ 04h ;# ">
+"168
+[; <" PORTA equ 05h ;# ">
+"218
+[; <" PORTB equ 06h ;# ">
+"280
+[; <" PORTC equ 07h ;# ">
+"342
+[; <" PORTD equ 08h ;# ">
+"404
+[; <" PORTE equ 09h ;# ">
+"436
+[; <" PCLATH equ 0Ah ;# ">
+"456
+[; <" INTCON equ 0Bh ;# ">
+"534
+[; <" PIR1 equ 0Ch ;# ">
+"596
+[; <" PIR2 equ 0Dh ;# ">
+"636
+[; <" TMR1 equ 0Eh ;# ">
+"643
+[; <" TMR1L equ 0Eh ;# ">
+"650
+[; <" TMR1H equ 0Fh ;# ">
+"657
+[; <" T1CON equ 010h ;# ">
+"732
+[; <" TMR2 equ 011h ;# ">
+"739
+[; <" T2CON equ 012h ;# ">
+"810
+[; <" SSPBUF equ 013h ;# ">
+"817
+[; <" SSPCON equ 014h ;# ">
+"887
+[; <" CCPR1 equ 015h ;# ">
+"894
+[; <" CCPR1L equ 015h ;# ">
+"901
+[; <" CCPR1H equ 016h ;# ">
+"908
+[; <" CCP1CON equ 017h ;# ">
+"966
+[; <" RCSTA equ 018h ;# ">
+"1061
+[; <" TXREG equ 019h ;# ">
+"1068
+[; <" RCREG equ 01Ah ;# ">
+"1075
+[; <" CCPR2 equ 01Bh ;# ">
+"1082
+[; <" CCPR2L equ 01Bh ;# ">
+"1089
+[; <" CCPR2H equ 01Ch ;# ">
+"1096
+[; <" CCP2CON equ 01Dh ;# ">
+"1154
+[; <" ADRESH equ 01Eh ;# ">
+"1161
+[; <" ADCON0 equ 01Fh ;# ">
+"1257
+[; <" OPTION_REG equ 081h ;# ">
+"1327
+[; <" TRISA equ 085h ;# ">
+"1377
+[; <" TRISB equ 086h ;# ">
+"1439
+[; <" TRISC equ 087h ;# ">
+"1501
+[; <" TRISD equ 088h ;# ">
+"1563
+[; <" TRISE equ 089h ;# ">
+"1620
+[; <" PIE1 equ 08Ch ;# ">
+"1682
+[; <" PIE2 equ 08Dh ;# ">
+"1722
+[; <" PCON equ 08Eh ;# ">
+"1756
+[; <" SSPCON2 equ 091h ;# ">
+"1818
+[; <" PR2 equ 092h ;# ">
+"1825
+[; <" SSPADD equ 093h ;# ">
+"1832
+[; <" SSPSTAT equ 094h ;# ">
+"2001
+[; <" TXSTA equ 098h ;# ">
+"2082
+[; <" SPBRG equ 099h ;# ">
+"2089
+[; <" CMCON equ 09Ch ;# ">
+"2159
+[; <" CVRCON equ 09Dh ;# ">
+"2224
+[; <" ADRESL equ 09Eh ;# ">
+"2231
+[; <" ADCON1 equ 09Fh ;# ">
+"2290
+[; <" EEDATA equ 010Ch ;# ">
+"2297
+[; <" EEADR equ 010Dh ;# ">
+"2304
+[; <" EEDATH equ 010Eh ;# ">
+"2311
+[; <" EEADRH equ 010Fh ;# ">
+"2318
+[; <" EECON1 equ 018Ch ;# ">
+"2363
+[; <" EECON2 equ 018Dh ;# ">
+"5 common.c
+[v _my_strcmp `(i ~T0 @X0 1 ef2`*Cuc`*Cuc ]
+"6
+{
+[e :U _my_strcmp ]
+"5
+[v _str1 `*Cuc ~T0 @X0 1 r1 ]
+[v _str2 `*Cuc ~T0 @X0 1 r2 ]
+"6
+[f ]
+"7
+[e $U 100  ]
+[e :U 101 ]
+"8
+{
+"9
+[e ++ _str1 * -> -> 1 `i `x -> -> # *U _str1 `i `x ]
+"10
+[e ++ _str2 * -> -> 1 `i `x -> -> # *U _str2 `i `x ]
+"11
+}
+[e :U 100 ]
+"7
+[e $ && != -> *U _str1 `i -> 0 `i == -> *U _str1 `i -> *U _str2 `i 101  ]
+[e :U 102 ]
+"12
+[e ) - -> *U -> _str1 `*uc `i -> *U -> _str2 `*uc `i ]
+[e $UE 99  ]
+"13
+[e :UE 99 ]
+}
+"16
+[v _store_time `(v ~T0 @X0 1 ef2`*uc`*uc ]
+"17
+{
+[e :U _store_time ]
+"16
+[v _time `*uc ~T0 @X0 1 r1 ]
+[v _clock_reg `*uc ~T0 @X0 1 r2 ]
+"17
+[f ]
+"18
+[e = *U + _time * -> -> 0 `i `x -> -> # *U _time `i `x -> + -> & >> -> *U + _clock_reg * -> -> 0 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 3 `i `ui -> 48 `ui `uc ]
+"19
+[e = *U + _time * -> -> 1 `i `x -> -> # *U _time `i `x -> + -> & -> *U + _clock_reg * -> -> 0 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
+"21
+[e = *U + _time * -> -> 2 `i `x -> -> # *U _time `i `x -> -> 58 `ui `uc ]
+"23
+[e = *U + _time * -> -> 3 `i `x -> -> # *U _time `i `x -> + -> & >> -> *U + _clock_reg * -> -> 1 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
+"24
+[e = *U + _time * -> -> 4 `i `x -> -> # *U _time `i `x -> + -> & -> *U + _clock_reg * -> -> 1 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
+"26
+[e = *U + _time * -> -> 5 `i `x -> -> # *U _time `i `x -> -> 58 `ui `uc ]
+"28
+[e = *U + _time * -> -> 6 `i `x -> -> # *U _time `i `x -> + -> & >> -> *U + _clock_reg * -> -> 2 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
+"29
+[e = *U + _time * -> -> 7 `i `x -> -> # *U _time `i `x -> + -> & -> *U + _clock_reg * -> -> 2 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
+"30
+[e = *U + _time * -> -> 8 `i `x -> -> # *U _time `i `x -> -> 0 `ui `uc ]
+"31
+[e :UE 103 ]
+}
+"34
+[v _clcd_clear_screen `(v ~T0 @X0 1 ef ]
+"35
+{
+[e :U _clcd_clear_screen ]
+[f ]
+"36
+[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
+"37
+[e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 0 `i `uc ]
+"38
+[e :UE 104 ]
+}
+"41
+[v _my_strcpy `(v ~T0 @X0 1 ef2`*uc`*Cuc ]
+"42
+{
+[e :U _my_strcpy ]
+"41
+[v _dst `*uc ~T0 @X0 1 r1 ]
+[v _src `*Cuc ~T0 @X0 1 r2 ]
+"42
+[f ]
+"43
+[e $U 106  ]
+[e :U 107 ]
+[e :U 106 ]
+[e $ != -> = *U ++ _dst * -> -> 1 `i `x -> -> # *U _dst `i `x *U ++ _src * -> -> 1 `i `x -> -> # *U _src `i `x `ui -> 0 `ui 107  ]
+[e :U 108 ]
+"44
+[e :UE 105 ]
+}
+[a 1C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 2C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
